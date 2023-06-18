@@ -1,0 +1,7 @@
+(let ((a (tuple 1 2 3)) (b (tuple 1 2 3)))
+    (block
+        (settuple! a 2 a)
+        (settuple! b 2 b)
+        (== a b)
+    )   
+)

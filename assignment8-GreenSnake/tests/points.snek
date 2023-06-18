@@ -1,0 +1,8 @@
+(fun (generate_tuple x y) (tuple x y))
+(fun (add_tuple tuple1 tuple2) (tuple (+ (index tuple1 0) (index tuple2 0)) (+ (index tuple1 1) (index tuple2 1))))
+
+(block
+    (print (add_tuple (generate_tuple 1 2) (generate_tuple 3 4)))
+    (print (add_tuple (tuple 10 12) (generate_tuple 3 4)))
+    (add_tuple (generate_tuple 1 2) (tuple 7 10))
+)

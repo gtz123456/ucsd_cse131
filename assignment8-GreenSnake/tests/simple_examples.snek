@@ -1,0 +1,13 @@
+(let ((i 0) (a (tuple 0 1 2 3 4))) 
+    (block
+        (print (index a 0))
+        (print (index a 4))
+        (print (if (> i (index a 2)) true false))
+        (loop 
+            (if (> i (index a 4))
+                (break i)
+                (set! i (add1 i))
+            )
+        )
+    )
+)

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+rm -f runtime/*.a
+rm -f runtime/*.o
+rm -f tests/*.run
+rm -f tests/*.s
+rm -f tests/*.o
+rm -f tests/*.a

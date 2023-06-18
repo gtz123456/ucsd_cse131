@@ -1,0 +1,34 @@
+(let 
+    (
+        (n input)
+        (ct 0)
+        (i 2)
+    )
+    (loop (if (<= i n) 
+        (let 
+            (
+                (isPrime true)
+                (j 2)
+            )
+            (block 
+                (loop 
+                    (if (< j i) 
+                        (let 
+                            (
+                                (c i)
+                            ) 
+                            (block 
+                                (loop (if (> c 0) (set! c (- c j)) (break c)))
+                                (if (= c 0) (block (set! isPrime false) (break isPrime)) (set! j (add1 j)))
+                            )    
+                        )
+                        (break isPrime)
+                    )
+                )
+                (if isPrime (set! ct (add1 ct)) (set! ct ct))
+                (set! i (add1 i))
+            )
+        )
+        (break ct)
+    ))
+)

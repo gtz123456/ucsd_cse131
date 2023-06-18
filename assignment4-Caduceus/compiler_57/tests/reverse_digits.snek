@@ -1,0 +1,39 @@
+(let 
+    (
+        (n input)
+        (rev 0)
+        (modifier (if (< n 0) (block (set! n (* n -1)) -1) 1))
+        (ten 10)
+    )
+    (loop 
+        (if (> n 0) 
+            (let 
+                (
+                    (div 0)
+                    (mod n)
+                    (temp n)
+                )
+                (if (< n 10)
+                    (block 
+                        (set! rev (+ n (* rev 10)))
+                        (set! rev (* rev modifier))
+                        (break rev) 
+                    )
+                    (block 
+                        (loop (if (>= mod ten) 
+                            (set! mod (- mod ten)) 
+                            (break mod)
+                        ))
+                        (loop (if (>= temp ten) 
+                            (block (set! temp (- temp ten)) (set! div (add1 div))) 
+                            (break temp)
+                        ))
+                        (set! rev (+ mod (* rev 10)))
+                        (set! n div)
+                    )
+                )
+            )
+            (break (* modifier rev))
+        )
+    )
+)

@@ -1,0 +1,9 @@
+/target
+
+*.s
+*.o
+*.a
+*.run
+
+# Test snek file
+t.snek

@@ -1,0 +1,18 @@
+(let ((num input) (sum 0) (n num)) 
+    (block 
+        (if (<= num 0)
+            false
+            (block 
+                (let ((i 1) (modRes false)) (block
+                    (loop (if (>= i num) (break sum) (block 
+                        (set! modRes num)
+                        (loop (if (> modRes 0) (set! modRes (- modRes i)) (break modRes)))
+                        (if (= modRes 0) (set! sum (+ sum i)) (set! sum sum))
+                        (set! i (add1 i))
+                    )))
+                    (= sum num)
+                ))
+            )
+        )
+    )
+)

@@ -1,0 +1,109 @@
+[cs131sp23ai@ieng6-203]:adder:71$ cat test/NegateTest1.snek
+(negate (negate (negate 0)))[cs131sp23ai@ieng6-203]:adder:72$ make test/NegateTest1.run
+cargo run -- test/NegateTest1.snek test/NegateTest1.s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+     Running `target/debug/adder test/NegateTest1.snek test/NegateTest1.s`
+nasm -f elf64 test/NegateTest1.s -o runtime/our_code.o
+ar rcs runtime/libour_code.a runtime/our_code.o
+rustc -L runtime/ runtime/start.rs -o test/NegateTest1.run
+[cs131sp23ai@ieng6-203]:adder:73$ cat test/NegateTest1.s   
+
+section .text
+global our_code_starts_here
+our_code_starts_here:
+  mov rax, 0
+neg rax
+neg rax
+neg rax
+  ret
+[cs131sp23ai@ieng6-203]:adder:75$ test/NegateTest1.run
+0
+[cs131sp23ai@ieng6-203]:adder:76$ cat test/NegateTest2.snek
+(negate (add1 (negate (sub1 (negate 9)))))[cs131sp23ai@ieng6-203]:adder:77$ make test/NegateTest2.run
+cargo run -- test/NegateTest2.snek test/NegateTest2.s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.04s
+     Running `target/debug/adder test/NegateTest2.snek test/NegateTest2.s`
+nasm -f elf64 test/NegateTest2.s -o runtime/our_code.o
+ar rcs runtime/libour_code.a runtime/our_code.o
+rustc -L runtime/ runtime/start.rs -o test/NegateTest2.run
+[cs131sp23ai@ieng6-203]:adder:78$ cat test/NegateTest2.s
+
+section .text
+global our_code_starts_here
+our_code_starts_here:
+  mov rax, 9
+neg rax
+sub rax, 1
+neg rax
+add rax, 1
+neg rax
+  ret
+[cs131sp23ai@ieng6-203]:adder:79$ test/NegateTest2.run
+-11
+[cs131sp23ai@ieng6-203]:adder:80$ cat test/NegateTest3.snek
+(sub1 (negate (add1 (sub1 0))))[cs131sp23ai@ieng6-203]:adder:81$ make test/NegateTest3.run
+cargo run -- test/NegateTest3.snek test/NegateTest3.s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+     Running `target/debug/adder test/NegateTest3.snek test/NegateTest3.s`
+nasm -f elf64 test/NegateTest3.s -o runtime/our_code.o
+ar rcs runtime/libour_code.a runtime/our_code.o
+rustc -L runtime/ runtime/start.rs -o test/NegateTest3.run
+[cs131sp23ai@ieng6-203]:adder:82$ cat test/NegateTest3.s
+
+section .text
+global our_code_starts_here
+our_code_starts_here:
+  mov rax, 0
+sub rax, 1
+add rax, 1
+neg rax
+sub rax, 1
+  ret
+[cs131sp23ai@ieng6-203]:adder:83$ test/NegateTest3.run
+-1
+[cs131sp23ai@ieng6-203]:adder:84$ cat test/NegateTest4.snek
+(negate (sub1 (add1 (add1 (sub1 999)))))[cs131sp23ai@ieng6-203]:adder:85$ make test/NegateTest4.run
+cargo run -- test/NegateTest4.snek test/NegateTest4.s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+     Running `target/debug/adder test/NegateTest4.snek test/NegateTest4.s`
+nasm -f elf64 test/NegateTest4.s -o runtime/our_code.o
+ar rcs runtime/libour_code.a runtime/our_code.o
+rustc -L runtime/ runtime/start.rs -o test/NegateTest4.run
+[cs131sp23ai@ieng6-203]:adder:86$ cat test/NegateTest4.s
+
+section .text
+global our_code_starts_here
+our_code_starts_here:
+  mov rax, 999
+sub rax, 1
+add rax, 1
+add rax, 1
+sub rax, 1
+neg rax
+  ret
+[cs131sp23ai@ieng6-203]:adder:87$ test/NegateTest4.run
+-999
+[cs131sp23ai@ieng6-203]:adder:88$ cat test/NegateTest5.snek
+(negate (sub1 (negate( add1 (sub1 (sub1 (sub1 -1)))))))[cs131sp23ai@ieng6-203]:adder:89$ make test/NegateTest5.run
+cargo run -- test/NegateTest5.snek test/NegateTest5.s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.04s
+     Running `target/debug/adder test/NegateTest5.snek test/NegateTest5.s`
+nasm -f elf64 test/NegateTest5.s -o runtime/our_code.o
+ar rcs runtime/libour_code.a runtime/our_code.o
+rustc -L runtime/ runtime/start.rs -o test/NegateTest5.run
+[cs131sp23ai@ieng6-203]:adder:90$ cat test/NegateTest5.s
+
+section .text
+global our_code_starts_here
+our_code_starts_here:
+  mov rax, -1
+sub rax, 1
+sub rax, 1
+sub rax, 1
+add rax, 1
+neg rax
+sub rax, 1
+neg rax
+  ret
+[cs131sp23ai@ieng6-203]:adder:91$ test/NegateTest5.run
+-2

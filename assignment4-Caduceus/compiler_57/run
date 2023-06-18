@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Check if at least one arg was passed in
+if [ $# -eq 0 ]; then
+    echo "Usage: ./run.sh <test_name> [args]"
+    exit 1
+fi
+
+snek_file="tests/$1.snek"
+
+# Make sure the snek file exists
+if [ ! -f $snek_file ]; then
+    echo "File $snek_file does not exist"
+    exit 1
+fi
+
+run_file="tests/$1.run"
+
+./clean 
+clear
+make $run_file
+
+# Run the run_file, passing in any additional args
+./$run_file ${@:2}

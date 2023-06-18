@@ -1,0 +1,6 @@
+(let ((x (tuple 1 2 3)))
+    (block
+        (settuple! x 2 x)
+        x
+    )
+)

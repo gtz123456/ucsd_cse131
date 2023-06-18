@@ -1,0 +1,7 @@
+(let ((x (tuple 1 2 3)) (y (tuple 4 5 x)))
+    (block
+        (settuple! x 2 y)
+        (settuple! y 1 y)
+        x
+    )
+)

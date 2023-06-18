@@ -1,0 +1,17 @@
+
+section .text
+extern snek_error
+extern snek_print
+global our_code_starts_here
+
+our_code_starts_here:
+  
+mov [rsp-16], rdi
+mov rax, 2
+mov [rsp-24], rax
+mov rdi, rax
+sub rsp, 24
+call snek_print
+add rsp, 24
+mov rax, [rsp-24]
+  ret

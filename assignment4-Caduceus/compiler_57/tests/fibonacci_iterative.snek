@@ -1,0 +1,22 @@
+(let 
+    (
+        (i 1) 
+        (prevPrevNum 0) 
+        (prevNum 0) 
+        (currNum 1) 
+    )
+    (if (= input 0)
+        0
+        (loop 
+            (if (< i input)
+                (block 
+                    (set! prevPrevNum prevNum)
+                    (set! prevNum currNum)
+                    (set! currNum (+ prevPrevNum prevNum))
+                    (set! i (add1 i))
+                )
+                (break currNum)
+            )
+        )
+    )
+)

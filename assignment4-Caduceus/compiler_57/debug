@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <file>"
+    exit 1
+fi
+
+nasm -f elf64 tests/$1.s -o tests/$1.o
+ar rcs tests/lib$1.a tests/$1.o
+rustc -L tests/ -lour_code:$1 runtime/start.rs -o tests/$1.run
+./tests/$1.run

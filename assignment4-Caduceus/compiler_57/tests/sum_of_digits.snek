@@ -1,0 +1,19 @@
+(let ( (n input) (digitSum 0) (modifier (if (> n 0) 1 -1)) ) (block 
+    (set! n (if (> n 0) n (* n -1)))
+    (loop 
+        (if (> n 0)
+            (let ((remRes n) (divRes 0)) (block 
+                (loop (if (>= remRes 10) 
+                    (block 
+                        (set! divRes (add1 divRes))
+                        (set! remRes (- remRes 10))
+                    ) 
+                    (break remRes)
+                ))
+                (set! n divRes)
+                (set! digitSum (+ digitSum (* remRes modifier)))
+            ))
+            (break digitSum)
+        )
+    )
+))
